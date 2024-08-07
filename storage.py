@@ -3,10 +3,15 @@ import json
 
 
 def data_read():
+
     file_path = os.path.join(os.path.dirname(__file__), "data.json")
-    with open(file_path, "r") as file:
-        data = json.loads(file.read())
-    return data
+    if os.path.isfile(file_path):
+        with open(file_path, "r") as file:
+            data = json.loads(file.read())
+        return data
+    else:
+        data_write({})
+        return {}
 
 
 def data_write(data):
